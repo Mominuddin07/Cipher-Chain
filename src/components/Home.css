@@ -1,0 +1,166 @@
+/* Global Styles */
+.Home {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  header {
+    background: #264653;
+    color: white;
+    padding: 10px 25px;
+  }
+  
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px; /* Make sure the height is sufficient for the navbar */
+    background: #051D38;
+    font-size: 1.3rem;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+  
+  .nav-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  .nav-links li {
+    margin-left: 20px;
+  }
+  
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  /* Hero Section */
+  .hero {
+    position: relative;
+    background: none; /* Remove the background image from the main container */
+    height: 100vh; /* Full viewport height */
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px; /* Add padding to ensure hero section doesn’t overlap with navbar */
+  }
+  
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://iea.imgix.net/fd158318-41d2-4c89-8367-d194aa7b2def/WorldEnergyInvestment2024-shutterstock_2333511041.jpg?auto=compress%2Cformat&fit=min&q=80&rect=286%2C181%2C4982%2C2135&w=1800&h=771&fit=crop&fm=jpg&q=70&auto=format') no-repeat center center;
+    background-size: cover;
+    filter: blur(4px); /* Apply blur effect to the background */
+    z-index: -1; /* Ensure the background stays behind the text */
+  }
+  
+  .hero-text {
+    position: relative;
+    z-index: 1; /* Ensure text is above the blurred image */
+  }
+  
+  .hero-text h1 {
+    font-size: 3rem;
+    margin: 0;
+  }
+  
+  .hero-text p {
+    font-size: 1.2rem;
+  }
+  
+  .hero-text button {
+    background-color: #ff9900;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  /* Feature, Insights, and Contact Sections */
+  .features, .insights, .contact {
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  .features h2, .insights h2, .contact h2 {
+    margin-bottom: 20px;
+  }
+
+  .features {
+    top: 20px;
+    height: 100vh;
+    background: linear-gradient(#62cff4, #2c67f2);
+
+  }
+  
+  /* .feature-items {
+    display: flex;
+    justify-content: space-around;
+    
+  }
+   */
+  .feature-item {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+  }
+  
+  .insights {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #2c67f2;
+    height: 100vh;
+  }
+  
+  .insights h2 {
+    margin-bottom: 20px;
+  }
+  
+  .insight-cards {
+    display: flex;
+    justify-content:space-around;
+    flex-wrap: wrap;
+  }
+  
+  .insight-card {
+    width: 30%;
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin: 10px;
+    border-radius: 8px;
+    background: #f9f9f9;
+    
+
+  }
+  
+  .insight-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .insight-card p {
+    font-size: 1.1rem;
+    color: #555;
+  }
+  
+  
+  footer {
+    background-color: #116530;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  
