@@ -1,70 +1,142 @@
-# Getting Started with Create React App
+<h1 align="center">
+    <img alt="project" title="#About" src="./public/gitbanner.jpg" />
+</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+<h1 align="center">
+  <a href="https://cryptotrackercoins.netlify.app/">Invest Smart</a>
+</h1>
 
-In the project directory, you can run:
+<h3 align="center"></h3>
 
-### `npm start`
+<p align="center">
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+  <img alt="Stars" src="https://img.shields.io/github/stars/Mominuddin07/Investment-insights?style=social">
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+  <a href="https://github.com/Mominuddin07/CryptoTracker">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Mominuddin07/Investment-insights">
+  </a>
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+  <a href="https://github.com/Mominuddin07/">
+    <img alt="made by Mohammed Mominuddin" src="https://img.shields.io/badge/made%20by-Mohammed%20Mominuddin-ff69b4">
+  </a>
+</p>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<h4 align="center"> 
+	 Status: Finished
+</h4>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<p align="center">
+ <a href="#about">About</a> •
+ <a href="#features">Features</a> •
+ <a href="#how-it-works">How it works</a> • 
+ <a href="#tech-stack">Tech Stack</a> •  
+ <a href="#author">Author</a> 
+</p>
 
-### `npm run eject`
+## About
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+PROJECT - Investment Insights is a React-based web app that provides real-time market data through a dashboard. It uses Tailwind for design and Firebase for the backend and APIs, helping users track trends and prices easily.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Features
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- [x] Dashboard Insights
+- [x] Contact Form with EmailJS
+- [x] Firebase Authentication
+- [x] Pagination and search functionality for coins
+- [x] Mobile responsive design
+- [x] Tradingview Chart
+- [x] Real-time cryptocurrency prices and trends
+- [x] View detailed coin information
+
+---
+
+## How it works
+
+1. **Frontend** (this repository): Built using React, Tailwind CSS, and Axios to fetch data from the CoinGecko API and.
+2. **Backend** (external or API service): Axios to fetch data from the CoinGecko API and Tradingview and Firebase for user Authentication . 
+
+### Pre-requisites
+
+Before you begin, make sure you have the following tools installed on your machine:
+- [Git](https://git-scm.com)
+- [Node.js](https://nodejs.org/en/)
+- [VSCode](https://code.visualstudio.com/) (or any code editor)
+
+#### Running the web application (Frontend)
+
+```bash
+# Clone this repository
+$ git clone git@github.com:Investment-insights/.git
+
+# Navigate to the project folder
+$ cd Investment-insights
+
+# Install dependencies
+$ npm install or npm i 
+
+# Start the application
+$ npm start
+
+# The application will run on http://localhost:3000
+
+```
+
+---
+
+## Tech Stack
+
+The following tools were used in the construction of the project:
+
+#### **Platform** 
+
+- **[React Router Dom](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom)**
+- **[React Icons](https://react-icons.github.io/react-icons/)**
+- **[Axios](https://github.com/axios/axios)**
+- **[React Redux](https://github.com/reduxjs/react-redux)**
+- **[react-device-detect](https://github.com/duskload/react-device-detect)**
+
+### **Styling & UI**
+- **[Tailwind CSS](https://tailwindcss.com/)** – Utility-first CSS framework for styling  
+
+### **Backend & Database**
+- **[Firebase](https://firebase.google.com/)** – Authentication, Firestore, Hosting, and APIs  
+
+### **Utilities & APIs**
+- **[EmailJS](https://www.emailjs.com/)** – Contact form functionality  
+
+#### **Utils**
+
+- **API**: [CoinGecko API](https://www.coingecko.com/en/api) → Provides real-time cryptocurrency data including prices, market trends, and more.
+- **API**: [TradingView](https://www.tradingview.com/widget/) → Offers charting solutions, market data, and financial analysis tools for integration into applications.
+- **Editor**: [Visual Studio Code](https://code.visualstudio.com/) → A code editor used for writing and debugging the application.
+
+
+---
+
+## Author
+
+<a href="https://www.linkedin.com/in/mohammed-mominuddin-350180259/">
+
+ <br />
+ <p><b>Mohammed Mominuddin</b></p></a>
+ 
+[![Linkedin Badge](https://img.shields.io/badge/-Mohammed%20Mominuddin-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/mohammed-mominuddin-350180259/)](https://www.linkedin.com/in/mohammed-mominuddin-350180259/)
+
+
+---
+
+
 
 ## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+This project was created using React .
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+For more information about React, refer to the official documentation.
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+You can also learn more about React in the React documentation.
