@@ -4,7 +4,7 @@
 
 
 <h1 align="center">
-  <a href="https://cryptotrackercoins.netlify.app/">Invest Smart</a>
+  <a href="https://investsmartz.netlify.app/">Invest Smart</a>
 </h1>
 
 <h3 align="center"></h3>
