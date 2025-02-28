@@ -58,7 +58,7 @@ PROJECT - Investment Insights is a React-based web app that provides real-time m
 
 ## How it works
 
-1. **Frontend** (this repository): Built using React, Tailwind CSS, and Axios to fetch data from the CoinGecko API and.
+1. **Frontend** (this repository): Built using React, Tailwind CSS, and Axios to fetch data from the CoinGecko API.
 2. **Backend** (external or API service): Axios to fetch data from the CoinGecko API and Tradingview and Firebase for user Authentication . 
 
 ### Pre-requisites
