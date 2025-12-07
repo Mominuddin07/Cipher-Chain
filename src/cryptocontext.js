@@ -5,8 +5,8 @@ const CryptoContext = createContext();
 
 // The context provider component
 const CryptoContextProvider = ({ children }) => {
-  const [currency, setCurrency] = useState('INR');
-  const [symbol, setSymbol] = useState('₹');
+  const [currency, setCurrency] = useState('USD');
+  const [symbol, setSymbol] = useState('$');
 
   // Update symbol based on currency
   useEffect(() => {

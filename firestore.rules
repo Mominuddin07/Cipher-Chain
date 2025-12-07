@@ -1,0 +1,139 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // --------------------------
+    // Helper functions
+    // --------------------------
+    
+    // Check if user has a specific role
+    function roleIs(r) {
+      return request.auth != null && request.auth.token.role == r;
+    }
+    
+    // Check if user is admin
+    function isAdmin() {
+      return roleIs("admin");
+    }
+    
+    // Check if user is auditor (admin or auditor role)
+    function isAuditor() {
+      return isAdmin() || roleIs("auditor");
+    }
+    
+    // Check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Check if user is accessing their own data
+    function isOwner(uid) {
+      return isAuthenticated() && request.auth.uid == uid;
+    }
+
+    // --------------------------
+    // Coins Collection
+    // --------------------------
+    match /coins/{doc} {
+      // Anyone can read coins (public data)
+      allow read: if true;
+      
+      // Only admins can create, update, or delete coins
+      allow create, update, delete: if isAdmin();
+    }
+
+    // --------------------------
+    // Banners Collection
+    // --------------------------
+    match /banners/{doc} {
+      // Anyone can read banners (public data)
+      allow read: if true;
+      
+      // Only admins can create, update, or delete banners
+      allow create, update, delete: if isAdmin();
+    }
+
+    // --------------------------
+    // Audit Logs Collection
+    // --------------------------
+    match /auditLogs/{doc} {
+      // Only admins and auditors can read audit logs
+      allow get, list, read: if isAuditor();
+      
+      // Allow any authenticated user to CREATE audit log entries
+      // This ensures all user actions are logged
+      allow create: if isAuthenticated()
+        // Must contain only allowed fields
+        && request.resource.data.keys().hasOnly(['ts', 'action', 'actor', 'target', 'meta'])
+        
+        // ts must be a server timestamp (not client-provided)
+        && request.resource.data.ts is timestamp
+        
+        // Action must be from allowed list
+        && request.resource.data.action.matches(
+            '^(auth_sign_in|auth_sign_in_email|auth_sign_in_google|auth_sign_in_admin_google|auth_sign_up_email|auth_sign_out|dashboard_view|navigate_investsmart|admin_disable_user|admin_enable_user|admin_remove_profile|admin_create_coin|admin_update_coin|admin_delete_coin|admin_create_banner|admin_update_banner|admin_delete_banner)$'
+        )
+        
+        // Actor must match the authenticated user
+        && request.resource.data.actor is map
+        && request.resource.data.actor.keys().hasOnly(['uid', 'email', 'role'])
+        && request.resource.data.actor.uid == request.auth.uid
+        && request.resource.data.actor.email == request.auth.token.email
+        
+        // Role must match the user's actual role from token (or default to 'user')
+        && request.resource.data.actor.role == (
+            request.auth.token.role != null ? request.auth.token.role : 'user'
+        )
+        
+        // Optional fields validation
+        && (request.resource.data.target == null || request.resource.data.target is map)
+        && (request.resource.data.meta == null || request.resource.data.meta is map);
+      
+      // Prevent updates or deletes (audit logs are immutable)
+      allow update, delete: if false;
+    }
+
+    // --------------------------
+    // Users Collection
+    // --------------------------
+    match /Users/{uid} {
+      // Read: User can read their own data OR admin can read any user
+      allow get, list, read: if isAuthenticated() 
+        && (isOwner(uid) || isAdmin());
+      
+      // Create: User can only create their own document
+      allow create: if isAuthenticated() 
+        && isOwner(uid)
+        // Ensure they can't set admin role themselves
+        && (!request.resource.data.keys().hasAny(['role']) || request.resource.data.role == null);
+      
+      // Update:
+      // - Admin can update anything
+      // - User can only update limited fields (firstName, lastName, photo, lastLogin)
+      allow update: if isAuthenticated() && (
+        isAdmin() ||
+        (
+          isOwner(uid) &&
+          // User can only update these specific fields
+          request.resource.data.diff(resource.data).changedKeys()
+            .hasOnly(['firstName', 'lastName', 'photo', 'lastLogin']) &&
+          // Cannot change their own role
+          (!request.resource.data.keys().hasAny(['role']) || 
+           request.resource.data.role == resource.data.get('role', null))
+        )
+      );
+      
+      // Delete: Only admin can delete user profiles
+      allow delete: if isAdmin();
+    }
+
+    // --------------------------
+    // Default Deny Rule
+    // --------------------------
+    // Deny all other collections and operations
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
+

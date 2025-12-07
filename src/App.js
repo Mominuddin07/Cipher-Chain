@@ -6,6 +6,7 @@ import Login from "./components/login";
 import SignUp from "./components/register";
 import Profile from "./components/dashboard"; // Ensure correct import
 import Homepage from "./pages/homepage"; // Import Homepage
+import AdminDashboard from "./components/Admin/AdminDashboard"; // Import AdminDashboard
 import { auth } from "./firebase";
 import Banner from './components/banner/banner';
 import Coinstable from './components/Coinstable';
@@ -13,6 +14,8 @@ import { CryptoContextProvider } from './cryptocontext';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Header from "./components/header";
+import { AdminRoute } from "./routes/AdminRoute";
+import { ProtectedRoute } from "./routes/ProtectedRoute";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -38,20 +41,63 @@ function App() {
 
 function AppContent({ user }) {
   const location = useLocation();
-  const showHeader = location.pathname === "/Homepage"; // Only show Header on /dashboard
+  const showHeader = location.pathname === "/homepage"; // Show Header on /homepage
 
   return (
     <>
-      {showHeader && <Header />} {/* Render Header only on /dashboard */}
+      {showHeader && <Header />} {/* Render Header on /homepage */}
       <Routes>
+        {/* Public Routes */}
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<SignUp />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/dashboard" element={<Banner />} />
-        <Route path="/coins" element={<Coinstable />} />
-        <Route path="/homepage" element={<Homepage />} />
-        <Route path="*" element={<Navigate to={user ? "/dashboard" : "/login"} />} />
+        
+        {/* Protected User Routes */}
+        <Route 
+          path="/homepage" 
+          element={
+            <ProtectedRoute>
+              <Homepage />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/profile" 
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/dashboard" 
+          element={
+            <ProtectedRoute>
+              <Banner />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/coins" 
+          element={
+            <ProtectedRoute>
+              <Coinstable />
+            </ProtectedRoute>
+          } 
+        />
+        
+        {/* Admin Route */}
+        <Route 
+          path="/admin" 
+          element={
+            <AdminRoute>
+              <AdminDashboard />
+            </AdminRoute>
+          } 
+        />
+        
+        {/* Default redirect */}
+        <Route path="*" element={<Navigate to={user ? "/profile" : "/login"} />} />
       </Routes>
     </>
   );
